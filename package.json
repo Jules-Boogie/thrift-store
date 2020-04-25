@@ -1,0 +1,27 @@
+{
+  "name": "thrift-store",
+  "version": "1.0.0",
+  "description": "## Summary This app is an online thrift store where people can add items(post), buy items(delete), change the price of items(put)",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jules-Boogie/thrift-store.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jules-Boogie/thrift-store/issues"
+  },
+  "homepage": "https://github.com/Jules-Boogie/thrift-store#readme"
+}

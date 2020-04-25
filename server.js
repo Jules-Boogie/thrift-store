@@ -9,7 +9,7 @@ var express = require("express");
 var app = express();
 
 //define a port 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3500;
 
 //require the express handlebars
 var exphbs = require("express-handlebars");

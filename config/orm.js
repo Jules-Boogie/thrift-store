@@ -38,14 +38,14 @@ function objToSql(ob) {
 var orm = {
 
   viewAll: function (table, cb) {
-    var queryString = "SELECT * FROM" + table + ";"
+    var queryString = "SELECT * FROM " + table + ";"
     connection.query(queryString, function (err, res) {
       if (err) throw err;
       cb(res);
     })
   },
   viewOne: function (table, condition, cb) {
-    var queryString = "SELECT * FROM" + table;
+    var queryString = "SELECT * FROM " + table;
     queryString += " WHERE ";
     queryString += condition;
     connection.query(queryString, function (err, res) {

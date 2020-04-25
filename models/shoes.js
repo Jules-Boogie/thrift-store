@@ -30,7 +30,7 @@ var shoes = {
         orm.buyItem("shoes", condition, function(res){
             cb(res);
         });
-    };
+    }
   
   };
 
