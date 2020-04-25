@@ -11,8 +11,8 @@ Welcome to the Thrift Store Inventory App Repository!
 
 
 ## Thrift Store Inventory App Photos
-
-![App Photo]()
+ ### Home Page
+![App Photo](https://github.com/Jules-Boogie/thrift-store/blob/master/assets/Capture.PNG)
 
 
 ![App Photo]()
