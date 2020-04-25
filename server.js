@@ -14,11 +14,11 @@ var PORT = process.env.PORT || 3500;
 //require the express handlebars
 var exphbs = require("express-handlebars");
 
-
+//sets app tp use handlebars engine
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 
 
-//sets app tp use handlebars engine
+
 //enable our app to use a template engine,
 app.set("view engine", "handlebars");
 
@@ -26,10 +26,13 @@ app.set("view engine", "handlebars");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//we have some html in public folder that we want the app to utilize
 app.use(express.static("app/public"));
 
+//require our api route
 require("./router/storeController.js")(app);
 
+//listening to the port defined above
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

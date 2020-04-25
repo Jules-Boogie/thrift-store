@@ -7,13 +7,17 @@ var path = require("path");
 
 module.exports = function (app) {
 
-
+    //html route
 
     app.get("/", function (req, res) {
         res.sendFile(path.join(__dirname, "../public/main.html"));
     });
 
+    app.get("/signin", function (req, res) {
+        res.sendFile(path.join(__dirname, "../public/signin.html"));
+    });
 
+//signin does not have an app route yet and that was my stretch goal for this homework
 
     //shoes
     app.get("/shoes", function (req, res) {
