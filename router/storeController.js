@@ -3,38 +3,48 @@
 var shoes = require("../models/shoes.js");
 var accessories = require("../models/accessories.js");
 var clothing = require("../models/clothing.js");
+var path = require("path");
 
-module.exports = function(app){
+module.exports = function (app) {
 
-//shoes
-app.get("/shoes", function(req, res){
-    shoes.viewAll(function(data){
-        res.render("shoes", {shoes: data})
+
+
+    app.get("/", function (req, res) {
+        res.sendFile(path.join(__dirname, "../public/main.html"));
+    });
+
+
+
+    //shoes
+    app.get("/shoes", function (req, res) {
+        shoes.viewAll(function (data) {
+            res.render("shoes", { shoes: data })
+        })
     })
-})
-// render the redirect so that user can update item for sale. 
-app.get("/shoes/:id", function(req, res) {
-    var condition = "id = " + req.params.id;
-    shoes.viewOne(condition,function(data){
-        res.render("updateshoes", data[0]);
+    // render the redirect so that user can update item for sale. 
+    app.get("/shoes/:id", function (req, res) {
+        var condition = "id = " + req.params.id;
+        shoes.viewOne(condition, function (data) {
+            res.render("updateshoes", data[0]);
+        })
+    });
+
+    app.post("/api/shoes", function (req, res) {
+        shoes.create([
+            "Type", "Designer", "Cost"
+
+        ],
+            [req.body.type, req.body.designer, req.body.cost], function (result) {
+                res.json({ id: result.inserID })
+            })
     })
-  });
 
-app.post("/api/shoes", function(req,res){
-    shoes.create([
-        "Type", "Designer", "Cost"
-
-    ],
-    [req.body.type, req.body.designer, req.body.cost], function(result){
-        res.json({ id: result.inserID})
-    })
-})
-
-app.put("/api/shoes/:id", function(req,res){
-    var condition = "id = " + req.params.id;
-    shoes.updateListing({
-        Cost: req.body.cost}, condition, function(result){
-            if(result.changedRows == 0){
+    app.put("/api/shoes/:id", function (req, res) {
+        var condition = "id = " + req.params.id;
+        shoes.updateListing({
+            Cost: req.body.cost
+        }, condition, function (result) {
+            if (result.changedRows == 0) {
                 return res.status(404).end();
             } else {
                 res.status(200).end();
@@ -42,54 +52,55 @@ app.put("/api/shoes/:id", function(req,res){
         }
 
 
-    )
-})
-
-app.delete("/api/shoes/:id", function(req,res){
-    var condition = "id = " + req.params.id;
-    shoes.buyItem(condition, function(result){
-        if(result.affectedRows == 0){
-            res.status(404).end();
-        } else {
-            res.status(200).end();
-        }
+        )
     })
-})
 
-
-//clothing
-app.get("/clothing", function(req, res){
-    clothing.viewAll(function(data){
-        res.render("clothing", {clothing: data})
+    app.delete("/api/shoes/:id", function (req, res) {
+        var condition = "id = " + req.params.id;
+        shoes.buyItem(condition, function (result) {
+            if (result.affectedRows == 0) {
+                res.status(404).end();
+            } else {
+                res.status(200).end();
+            }
+        })
     })
-})
 
-// render the redirect so that user can update item for sale. 
-app.get("/clothing/:id", function(req, res) {
-    var condition = "id = " + req.params.id;
-    clothing.viewOne(condition,function(data){
-        res.render("updateclothes", data[0]);
+
+    //clothing
+    app.get("/clothing", function (req, res) {
+        clothing.viewAll(function (data) {
+            res.render("clothing", { clothing: data })
+        })
     })
-  });
+
+    // render the redirect so that user can update item for sale. 
+    app.get("/clothing/:id", function (req, res) {
+        var condition = "id = " + req.params.id;
+        clothing.viewOne(condition, function (data) {
+            res.render("updateclothes", data[0]);
+        })
+    });
 
 
 
 
-app.post("/api/clothing", function(req,res){
-    clothing.create([
-        "Type", "Designer", "Cost", "Description"
+    app.post("/api/clothing", function (req, res) {
+        clothing.create([
+            "Type", "Designer", "Cost", "Description"
 
-    ],
-    [req.body.type, req.body.designer, req.body.cost, req.body.description], function(result){
-        res.json({ id: result.inserID})
+        ],
+            [req.body.type, req.body.designer, req.body.cost, req.body.description], function (result) {
+                res.json({ id: result.inserID })
+            })
     })
-})
 
-app.put("/api/clothing/:id", function(req,res){
-    var condition = "id = " + req.params.id;
-    clothing.updateListing({
-        Cost: req.body.cost}, condition, function(result){
-            if(result.changedRows == 0){
+    app.put("/api/clothing/:id", function (req, res) {
+        var condition = "id = " + req.params.id;
+        clothing.updateListing({
+            Cost: req.body.cost
+        }, condition, function (result) {
+            if (result.changedRows == 0) {
                 return res.status(404).end();
             } else {
                 res.status(200).end();
@@ -97,57 +108,58 @@ app.put("/api/clothing/:id", function(req,res){
         }
 
 
-    )
-})
-
-app.delete("/api/clothing/:id", function(req,res){
-    var condition = "id = " + req.params.id;
-    clothing.buyItem(condition, function(result){
-        if(result.affectedRows == 0){
-            res.status(404).end();
-        } else {
-            res.status(200).end();
-        }
+        )
     })
-})
 
-
-
-
-
-
-//accessories
-app.get("/accessories", function(req, res){
-    accessories.viewAll(function(data){
-        res.render("accessories", {accessories: data})
+    app.delete("/api/clothing/:id", function (req, res) {
+        var condition = "id = " + req.params.id;
+        clothing.buyItem(condition, function (result) {
+            if (result.affectedRows == 0) {
+                res.status(404).end();
+            } else {
+                res.status(200).end();
+            }
+        })
     })
-})
 
-// render the redirect so that user can update item for sale. 
-app.get("/accessories/:id", function(req, res) {
-    var condition = "id = " + req.params.id;
-    accessories.viewOne(condition,function(data){
-        res.render("updateaccess", data[0]);
+
+
+
+
+
+    //accessories
+    app.get("/accessories", function (req, res) {
+        accessories.viewAll(function (data) {
+            res.render("accessories", { accessories: data })
+        })
     })
-  });
+
+    // render the redirect so that user can update item for sale. 
+    app.get("/accessories/:id", function (req, res) {
+        var condition = "id = " + req.params.id;
+        accessories.viewOne(condition, function (data) {
+            res.render("updateaccess", data[0]);
+        })
+    });
 
 
 
-app.post("/api/accessories", function(req,res){
-    accessories.create([
-        "Type", "Designer", "Cost"
+    app.post("/api/accessories", function (req, res) {
+        accessories.create([
+            "Type", "Designer", "Cost"
 
-    ],
-    [req.body.type, req.body.designer, req.body.cost], function(result){
-        res.json({ id: result.inserID})
+        ],
+            [req.body.type, req.body.designer, req.body.cost], function (result) {
+                res.json({ id: result.inserID })
+            })
     })
-})
 
-app.put("/api/accessories/:id", function(req,res){
-    var condition = "id = " + req.params.id;
-    accessories.updateListing({
-        Cost: req.body.cost}, condition, function(result){
-            if(result.changedRows == 0){
+    app.put("/api/accessories/:id", function (req, res) {
+        var condition = "id = " + req.params.id;
+        accessories.updateListing({
+            Cost: req.body.cost
+        }, condition, function (result) {
+            if (result.changedRows == 0) {
                 return res.status(404).end();
             } else {
                 res.status(200).end();
@@ -155,19 +167,19 @@ app.put("/api/accessories/:id", function(req,res){
         }
 
 
-    )
-})
-
-app.delete("/api/accessories/:id", function(req,res){
-    var condition = "id = " + req.params.id;
-    accessories.buyItem(condition, function(result){
-        if(result.affectedRows == 0){
-            res.status(404).end();
-        } else {
-            res.status(200).end();
-        }
+        )
     })
-})
+
+    app.delete("/api/accessories/:id", function (req, res) {
+        var condition = "id = " + req.params.id;
+        accessories.buyItem(condition, function (result) {
+            if (result.affectedRows == 0) {
+                res.status(404).end();
+            } else {
+                res.status(200).end();
+            }
+        })
+    })
 
 
 
