@@ -1,0 +1,24 @@
+<h1>Update the Accessories with an id of {{this.id}}</h1>
+
+<form data-id="{{this.id}}" class="update-access">
+ <div class="form-group">
+    <label for="item">Item for Sale:</label>
+    <input type="text" id="item" name="item" value="{{this.Type}}">
+  </div>
+
+  <div class="form-group">
+    <label for="brand">Brand Name:</label>
+    <input type="text" id="brand" name="brand" value="{{this.Designer}}">
+  </div>
+
+  <div class="form-group">
+    <label for="cost">Price:</label>
+    <input type="text" id="cost" name="cost" value="{{this.Cost}}">
+  </div>
+
+  <div class="form-group">
+    <label for="item">Item Description:</label>
+    <textarea id="item" name="description" rows="8" cols="40">{{this.Description}}</textarea>
+  
+  <button type="submit">Update Quote</button>
+</form>

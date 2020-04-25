@@ -10,8 +10,12 @@ var shoes = {
         orm.viewAll("shoes", function(res){
             cb(res);
         });
-    }, 
-  
+    },
+    viewOne: function(condition,cb) {
+        orm.viewAll("shoes", condition, function(res){
+            cb(res);
+        });
+    },  
     addListing: function(cols,vals,cb){
         orm.addListing("shoes", cols, vals, function(res){
             cb(res);

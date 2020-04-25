@@ -7,6 +7,11 @@ var accessories = {
           cb(res);
       });
   }, 
+  viewOne: function(condition,cb) {
+    orm.viewAll("accessories", condition, function(res){
+        cb(res);
+    });
+},  
 
   addListing: function(cols,vals,cb){
       orm.addListing("accessories", cols, vals, function(res){

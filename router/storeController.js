@@ -7,14 +7,18 @@ var clothing = require("../models/clothing.js");
 module.exports = function(app){
 
 //shoes
-app.get("/", function(req, res){
+app.get("/shoes", function(req, res){
     shoes.viewAll(function(data){
-        var hbsObject = {
-            shoes: data
-        };
-        res.render("whatever", hbsObject)
+        res.render("shoes", {shoes: data})
     })
 })
+// render the redirect so that user can update item for sale. 
+app.get("/shoes/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
+    shoes.viewOne(condition,function(data){
+        res.render("updateshoes", data[0]);
+    })
+  });
 
 app.post("/api/shoes", function(req,res){
     shoes.create([
@@ -54,21 +58,29 @@ app.delete("/api/shoes/:id", function(req,res){
 
 
 //clothing
-app.get("/", function(req, res){
+app.get("/clothing", function(req, res){
     clothing.viewAll(function(data){
-        var hbsObject = {
-            shoes: data
-        };
-        res.render("whatever", hbsObject)
+        res.render("clothing", {clothing: data})
     })
 })
 
+// render the redirect so that user can update item for sale. 
+app.get("/clothing/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
+    clothing.viewOne(condition,function(data){
+        res.render("updateclothes", data[0]);
+    })
+  });
+
+
+
+
 app.post("/api/clothing", function(req,res){
     clothing.create([
-        "Type", "Designer", "Cost"
+        "Type", "Designer", "Cost", "Description"
 
     ],
-    [req.body.type, req.body.designer, req.body.cost], function(result){
+    [req.body.type, req.body.designer, req.body.cost, req.body.description], function(result){
         res.json({ id: result.inserID})
     })
 })
@@ -105,14 +117,21 @@ app.delete("/api/clothing/:id", function(req,res){
 
 
 //accessories
-app.get("/", function(req, res){
+app.get("/accessories", function(req, res){
     accessories.viewAll(function(data){
-        var hbsObject = {
-            shoes: data
-        };
-        res.render("whatever", hbsObject)
+        res.render("accessories", {accessories: data})
     })
 })
+
+// render the redirect so that user can update item for sale. 
+app.get("/accessories/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
+    accessories.viewOne(condition,function(data){
+        res.render("updateaccess", data[0]);
+    })
+  });
+
+
 
 app.post("/api/accessories", function(req,res){
     accessories.create([

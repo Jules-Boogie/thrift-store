@@ -1,0 +1,115 @@
+<h1>Buy Fairly Used Shoes</h1>
+
+<p>Buy and Sell Items this app</p>
+
+<!-- Pass in data from server.js -->
+<ul>
+  {{#each shoes}}
+  	<li>
+  		<p><span class="label">Item for Sale:</span> {{this.Type}}</p>
+      <p><span class="label">Brand:</span> {{this.Designer}}</p>
+      <p><span class="label">Price($):</span> {{this.Cost}}</p>
+      <p><span class="label">Description:</span> {{this.Description}}</p>
+
+      <button data-id="{{this.id}}" class="delItem">Sold</button>
+
+      <a href="/shoes/{{this.id}}">Update this Item</a>
+  	</li>
+  {{/each}}
+</ul>
+
+<h2>Post A Shoe to Sell</h2>
+
+<form class="create-shoe">
+
+  <div class="form-group">
+    <label for="item">Item for Sale:</label>
+    <input type="text" id="item" name="item">
+  </div>
+
+  <div class="form-group">
+    <label for="brand">Brand Name:</label>
+    <input type="text" id="brand" name="brand">
+  </div>
+
+  <div class="form-group">
+    <label for="cost">Price:</label>
+    <input type="text" id="cost" name="cost">
+  </div>
+
+  <div class="form-group">
+    <label for="item">Item Description:</label>
+    <textarea id="description" name="description" rows="8" cols="40"></textarea>
+  </div>
+
+  <button type="submit">Post an Item</button>
+</form>
+
+<script type="text/javascript">
+
+ $(".delItem").on("click", function(event) {
+      var id = $(this).data("id");
+  
+      // This is the client's way of sending the DELETE request to the server.
+      $.ajax("/api/shoes/" + id, {
+        type: "DELETE"
+      }).then(
+        function() {
+          console.log("deleted id ", id);
+          // Reload the page to get the updated list
+          location.reload();
+        }
+      );
+    });
+  
+    $(".create-shoe").on("submit", function(event) {
+      // Make sure to preventDefault on a submit event.
+      event.preventDefault();
+  
+      var newShoe = {
+        Type: $("#item").val().trim(),
+        Designer: $("#brand").val().trim(),
+        Cost: $("#cost").val().trim(),
+        Description: $("#description").val().trim()
+      };
+  
+      // Send the POST request.
+      $.ajax("/api/shoes", {
+        type: "POST",
+        data: newShoe
+      }).then(
+        function() {
+          console.log("added new show");
+          // Reload the page to get the updated list
+          location.reload();
+        }
+      );
+    });
+  
+    $(".update-shoes").on("submit", function(event) {
+      // Make sure to preventDefault on a submit event.
+      event.preventDefault();
+  
+       var updatedItem = {
+        Type: $("#item").val().trim(),
+        Designer: $("#brand").val().trim(),
+        Cost: $("#cost").val().trim(),
+        Description: $("#description").val().trim()
+      };
+  
+      var id = $(this).data("id");
+  
+      // Send the POST request.
+      $.ajax("/api/shoes/" + id, {
+        type: "PUT",
+        data: updatedItem
+      }).then(
+        function() {
+          console.log("updated shoe post");
+          // Reload the page to get the updated list
+          location.assign("/shoes");
+        }
+      );
+    });
+
+</script>

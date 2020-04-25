@@ -6,7 +6,12 @@ var clothing = {
         orm.viewAll("clothing", function(res){
             cb(res);
         });
-    }, 
+    },
+    viewOne: function(condition,cb) {
+        orm.viewAll("clothing", condition, function(res){
+            cb(res);
+        });
+    },   
   
     addListing: function(cols,vals,cb){
         orm.addListing("clothing", cols, vals, function(res){
