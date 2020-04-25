@@ -27,10 +27,17 @@ Welcome to the Thrift Store Inventory App Repository!
 
 
 ## Code Snippet
-Explain code 
-
+The code below is an object relational map used for the shoes, accessories, and clothing models. This line of code works to query a specific table in our database given a certain condition is being met. 
 ```
-
+viewOne: function (table, condition, cb) {
+    var queryString = "SELECT * FROM " + table;
+    queryString += " WHERE ";
+    queryString += condition;
+    connection.query(queryString, function (err, res) {
+      if (err) throw err;
+      cb(res);
+    })
+  },
 ```
 
 
