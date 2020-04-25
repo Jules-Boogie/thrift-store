@@ -22,7 +22,7 @@ Welcome to the Thrift Store Inventory App Repository!
 | Technologies | Description  |
 |---------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------:|
 | [Nodejs](https://nodejs.org/en/docs/)                                     |             Node.js is designed to build scalable network applications.                 |
-| [Express Handlebars](https://www.npmjs.com/package/express-handlebars)                |  Handlebars a template engine that can manipulate HTML code from the server side using the server side code provided.                   |
+| [Express Handlebars](https://www.npmjs.com/package/express-handlebars)                |  Express-handlebars is a template engine that can manipulate HTML code from the server side using the server side code provided.                   |
 | [MYSQL](https://www.mysql.com/)                              |           Open source relational database management system.              |
 
 
