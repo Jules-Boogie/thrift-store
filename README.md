@@ -3,14 +3,14 @@
 Welcome to the Thrift Store Inventory App Repository!
 
 ## Summary 
- This app serves as a tool for users to buy, add, and update items on an online thrift store. 
+ This app serves as a tool for users to buy, add, and update items on an online thrift store. The app is a work in progress that will be improved with user authentication.
 
-## Employee Tracker App Video
+## Thrift Store Inventory App Deployed Link
 
-[Life Deployed Link]()
+[Life Deployed Link](https://thrift-store.herokuapp.com/)
 
 
-## Employee Tracker App Photos
+## Thrift Store Inventory App Photos
 
 ![App Photo]()
 
