@@ -5,10 +5,10 @@
 <!-- Pass in data from server.js -->
 <div class="row">
   {{#each accessories}}
-  <div class="card col container border-dark text-white bg-dark" style="width: 18rem;">
-  <div class="card-body">
-  	
-  		<p><span class="label">Item for Sale:</span> {{this.Type}}</p>
+  <div class="card col container border-light text-white bg-dark" style="width: 18rem;">
+    <div class="card-body">
+
+      <p><span class="label">Item for Sale:</span> {{this.Type}}</p>
       <p><span class="label">Brand:</span> {{this.Designer}}</p>
       <p><span class="label">Price($):</span> {{this.Cost}}</p>
       <p><span class="label">Description:</span> {{this.Description}}</p>
@@ -16,105 +16,126 @@
       <button data-id="{{this.id}}" class="delItem btn-danger">Sold</button>
 
       <a href="/accessories/{{this.id}}">Update this Item</a>
-  	
-  </div>
+
+    </div>
   </div>
   {{/each}}
-  </div>
+</div>
 
 
-<h2 class="text-center display-5">Post Fairly Used Accessories</h2>
 
-<form class="container text-center create-access">
 
-  <div class="form-group mx-auto form-group w-50">
-    <label for="item">Item for Sale:</label>
-    <input type="text" id="item" name="item">
-  </div>
+<div class="container contact">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="contact-info">
+        <h2 class="display-3"> Start Selling </h2>
+        <h4 class="display-5">Sell your new or pre-loved pieces to fund your next shopping spree!</h4>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <form class="container  create-access">
 
-  <div class="form-group mx-auto form-group w-50">
-    <label for="brand">Brand Name:</label>
-    <input type="text" id="brand" name="brand">
-  </div>
+        <div class="form-group  form-group ">
+          <label class="control-label col" for="item">Item for Sale:</label>
+          <div class="col-sm-10">
+            <input class="form-control" type="text" id="item" name="item">
+          </div>
+        </div>
 
-  <div class="form-group mx-auto form-group w-50">
-    <label for="cost">Price:</label>
-    <input type="text" id="cost" name="cost">
-  </div>
+        <div class="form-group  form-group">
+          <label class="control-label  col" for="brand">Brand Name:</label>
+          <div class="col-sm-10">
+            <input class="form-control" type="text" id="brand" name="brand">
+          </div>
+        </div>
 
-  <div class="form-group mx-auto form-group w-50">
-    <label for="item">Item Description:</label>
-    <textarea id="description" name="description" rows="8" cols="40"></textarea>
-  </div>
+        <div class="form-group  form-group ">
+          <label class="control-label col" for="cost">Price:</label>
+          <div class="col-sm-10">
+            <input class="form-control" type="text" id="cost" name="cost">
+          </div>
+        </div>
 
-  <button class="btn-secondary" type="submit">Post an Item</button>
-</form>
+        <div class="form-group  form-group ">
+          <label class="control-label col-sm-2" for="item">Item Description:</label>
+          <div class="col-sm-10">
+            <textarea class="form-control" id="description" name="description" rows="8" cols="40"></textarea>
+          </div>
+        </div>
+       
+          <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-info" type="submit">Post an Item</button>
+          </div>
+        
+      </form>
+    </div>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
- $(".delItem").on("click", function(event) {
-      var id = $(this).data("id");
-  
-      // Send the DELETE request.
-      $.ajax("/api/quotes/" + id, {
-        type: "DELETE"
-      }).then(
-        function() {
-          console.log("deleted id ", id);
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
-  
-    $(".create-access").on("submit", function(event) {
-      // Make sure to preventDefault on a submit event.
-      event.preventDefault();
-  
-      var newAccess = {
-        Type: $("#utem").val().trim(),
-        Designer: $("#brand").val().trim(),
-        Cost: $("#cost").val().trim(),
-        Description: $("#description").val().trim()
-      };
-  
-      // Send the POST request.
-      $.ajax("/api/quotes", {
-        type: "POST",
-        data: newAccess
-      }).then(
-        function() {
-          console.log("added new accessory");
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
-  
-    $(".update-access").on("submit", function(event) {
-      // Make sure to preventDefault on a submit event.
-      event.preventDefault();
-  
-      var updatedItem = {
-        Type: $("#item").val().trim(),
-        Designer: $("#brand").val().trim(),
-        Cost: $("#cost").val().trim(),
-        Description: $("#description").val().trim()
-      };
-  
-      var id = $(this).data("id");
-  
-      // Send the POST request.
-      $.ajax("/api/accessories/" + id, {
-        type: "PUT",
-        data: updatedItem
-      }).then(
-        function() {
-          console.log("updated accessory post");
-          // Reload the page to get the updated list
-          location.assign("/accessories");
-        }
-      );
-    });
+      $(".delItem").on("click", function (event) {
+        var id = $(this).data("id");
 
-</script>
+        // Send the DELETE request.
+        $.ajax("/api/quotes/" + id, {
+          type: "DELETE"
+        }).then(
+          function () {
+            console.log("deleted id ", id);
+            // Reload the page to get the updated list
+            location.reload();
+          }
+        );
+      });
+
+      $(".create-access").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var newAccess = {
+          Type: $("#utem").val().trim(),
+          Designer: $("#brand").val().trim(),
+          Cost: $("#cost").val().trim(),
+          Description: $("#description").val().trim()
+        };
+
+        // Send the POST request.
+        $.ajax("/api/quotes", {
+          type: "POST",
+          data: newAccess
+        }).then(
+          function () {
+            console.log("added new accessory");
+            // Reload the page to get the updated list
+            location.reload();
+          }
+        );
+      });
+
+      $(".update-access").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var updatedItem = {
+          Type: $("#item").val().trim(),
+          Designer: $("#brand").val().trim(),
+          Cost: $("#cost").val().trim(),
+          Description: $("#description").val().trim()
+        };
+
+        var id = $(this).data("id");
+
+        // Send the POST request.
+        $.ajax("/api/accessories/" + id, {
+          type: "PUT",
+          data: updatedItem
+        }).then(
+          function () {
+            console.log("updated accessory post");
+            // Reload the page to get the updated list
+            location.assign("/accessories");
+          }
+        );
+      });
+
+    </script>
