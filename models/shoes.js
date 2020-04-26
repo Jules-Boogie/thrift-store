@@ -12,7 +12,7 @@ var shoes = {
         });
     },
     viewOne: function(condition,cb) {
-        orm.viewAll("shoes", condition, function(res){
+        orm.viewOne("shoes", condition, function(res){
             cb(res);
         });
     },  

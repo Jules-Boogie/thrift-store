@@ -29,7 +29,7 @@ module.exports = function (app) {
     app.get("/shoes/:id", function (req, res) {
         var condition = "id = " + req.params.id;
         shoes.viewOne(condition, function (data) {
-            res.render("updateshoes", data[0]);
+            res.render("updateshoes", data);
         })
     });
 
