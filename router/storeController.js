@@ -34,20 +34,24 @@ module.exports = function (app) {
     });
 
     app.post("/api/shoes", function (req, res) {
-        shoes.create([
-            "Type", "Designer", "Cost"
+        shoes.addListing([
+            "Type", "Designer", "Cost","Description"
 
         ],
-            [req.body.type, req.body.designer, req.body.cost], function (result) {
-                res.json({ id: result.inserID })
+            [req.body.Type, req.body.Designer, req.body.Cost, req.body.Description], function (err,result) {
+                if(err) throw err;
+                console.log("result", result);
+                res.json({ id: result.insertId })
             })
     })
 
     app.put("/api/shoes/:id", function (req, res) {
         var condition = "id = " + req.params.id;
+        console.log("condition", condition);
         shoes.updateListing({
-            Cost: req.body.cost
+            Cost: req.body.Cost
         }, condition, function (result) {
+            console.log("result", result);
             if (result.changedRows == 0) {
                 return res.status(404).end();
             } else {
@@ -61,6 +65,7 @@ module.exports = function (app) {
 
     app.delete("/api/shoes/:id", function (req, res) {
         var condition = "id = " + req.params.id;
+        console.log("condition", condition);
         shoes.buyItem(condition, function (result) {
             if (result.affectedRows == 0) {
                 res.status(404).end();
@@ -94,15 +99,15 @@ module.exports = function (app) {
             "Type", "Designer", "Cost", "Description"
 
         ],
-            [req.body.type, req.body.designer, req.body.cost, req.body.description], function (result) {
-                res.json({ id: result.inserID })
+            [req.body.Type, req.body.Designer, req.body.Cost, req.body.Description], function (result) {
+                res.json({ id: result.insertId })
             })
     })
 
     app.put("/api/clothing/:id", function (req, res) {
         var condition = "id = " + req.params.id;
         clothing.updateListing({
-            Cost: req.body.cost
+            Cost: req.body.Cost
         }, condition, function (result) {
             if (result.changedRows == 0) {
                 return res.status(404).end();
@@ -150,18 +155,18 @@ module.exports = function (app) {
 
     app.post("/api/accessories", function (req, res) {
         accessories.create([
-            "Type", "Designer", "Cost"
+            "Type", "Designer", "Cost", "Description"
 
         ],
-            [req.body.type, req.body.designer, req.body.cost], function (result) {
-                res.json({ id: result.inserID })
+            [req.body.Type, req.body.Designer, req.body.Cost, req.body.Description], function (result) {
+                res.json({ id: result.insertID })
             })
     })
 
     app.put("/api/accessories/:id", function (req, res) {
         var condition = "id = " + req.params.id;
         accessories.updateListing({
-            Cost: req.body.cost
+            Cost: req.body.Cost
         }, condition, function (result) {
             if (result.changedRows == 0) {
                 return res.status(404).end();

@@ -36,7 +36,6 @@ function objToSql(ob) {
 }
 
 var orm = {
-
   viewAll: function (table, cb) {
     var queryString = "SELECT * FROM " + table + ";"
     connection.query(queryString, function (err, res) {
@@ -54,7 +53,7 @@ var orm = {
     })
   },
   addListing: function (table, cols, vals, cb) {
-    var queryString = "INSERT INTO" + table;
+    var queryString = "INSERT INTO " + table;
     queryString += " ("
     queryString += cols.toString();
     queryString += ") ";
