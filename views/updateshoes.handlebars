@@ -1,24 +1,24 @@
-<h1>Update the Shoes with an id of {{this.id}}</h1>
+<h1 class="text-center display-5">Update the {{this.Type}}</h1>
 
-<form data-id="{{this.id}}" class="update-shoes">
- <div class="form-group">
+<form data-id="{{this.id}}" class="container text-center update-shoes">
+ <div class="mx-auto form-group w-50 ">
     <label for="item">Item for Sale:</label>
-    <input type="text" id="item" name="item" value="{{this.Type}}">
+    <input class="form-control" placeholder="Enter Item" type="text" id="item" name="item" value="{{this.Type}}">
   </div>
 
-  <div class="form-group">
+  <div class="mx-auto form-group w-50 ">
     <label for="brand">Brand Name:</label>
-    <input type="text" id="brand" name="brand" value="{{this.Designer}}">
+    <input class="form-control" placeholder="Enter Brand Name" type="text" id="brand" name="brand" value="{{this.Designer}}">
   </div>
 
-  <div class="form-group">
+  <div class="mx-auto form-group w-50 ">
     <label for="cost">Price:</label>
-    <input type="text" id="cost" name="cost" value="{{this.Cost}}">
+    <input class="form-control" placeholder="Enter Price ($)" type="text" id="cost" name="cost" value="{{this.Cost}}">
   </div>
 
-  <div class="form-group">
+  <div class="mx-auto form-group w-50 ">
     <label for="item">Item Description:</label>
-    <textarea id="item" name="description" rows="8" cols="40">{{this.Description}}</textarea>
-  
-  <button type="submit">Update Quote</button>
+    <textarea class="form-control" rows="3" id="description" name="description" rows="8" cols="40">{{this.Description}}</textarea>
+  </div>
+  <button class="btn-primary" type="submit">Update Post</button>
 </form>

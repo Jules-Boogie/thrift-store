@@ -29,7 +29,7 @@ module.exports = function (app) {
     app.get("/shoes/:id", function (req, res) {
         var condition = "id = " + req.params.id;
         shoes.viewOne(condition, function (data) {
-            res.render("updateshoes", data);
+            res.render("updateshoes", data[0]);
         })
     });
 
@@ -95,7 +95,7 @@ module.exports = function (app) {
 
 
     app.post("/api/clothing", function (req, res) {
-        clothing.create([
+        clothing.addListing([
             "Type", "Designer", "Cost", "Description"
 
         ],

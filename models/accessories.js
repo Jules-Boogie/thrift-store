@@ -8,7 +8,7 @@ var accessories = {
       });
   }, 
   viewOne: function(condition,cb) {
-    orm.viewAll("accessories", condition, function(res){
+    orm.viewOne("accessories", condition, function(res){
         cb(res);
     });
 },  

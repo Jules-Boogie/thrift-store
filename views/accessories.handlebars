@@ -1,48 +1,53 @@
-<h1>Buy Fairly Used accessories</h1>
+<h1 class="text-center display-5">Buy Fairly Used accessories</h1>
 
-<p>Buy and Sell Items this app</p>
+
 
 <!-- Pass in data from server.js -->
-<ul>
+<div class="row">
   {{#each accessories}}
-  	<li>
+  <div class="card col container border-dark text-white bg-dark" style="width: 18rem;">
+  <div class="card-body">
+  	
   		<p><span class="label">Item for Sale:</span> {{this.Type}}</p>
       <p><span class="label">Brand:</span> {{this.Designer}}</p>
       <p><span class="label">Price($):</span> {{this.Cost}}</p>
       <p><span class="label">Description:</span> {{this.Description}}</p>
 
-      <button data-id="{{this.id}}" class="delItem">Sold</button>
+      <button data-id="{{this.id}}" class="delItem btn-danger">Sold</button>
 
       <a href="/accessories/{{this.id}}">Update this Item</a>
-  	</li>
+  	
+  </div>
+  </div>
   {{/each}}
-</ul>
+  </div>
 
-<h2>Post Fairly Used Accessories</h2>
 
-<form class="create-access">
+<h2 class="text-center display-5">Post Fairly Used Accessories</h2>
 
-  <div class="form-group">
+<form class="container text-center create-access">
+
+  <div class="form-group mx-auto form-group w-50">
     <label for="item">Item for Sale:</label>
     <input type="text" id="item" name="item">
   </div>
 
-  <div class="form-group">
+  <div class="form-group mx-auto form-group w-50">
     <label for="brand">Brand Name:</label>
     <input type="text" id="brand" name="brand">
   </div>
 
-  <div class="form-group">
+  <div class="form-group mx-auto form-group w-50">
     <label for="cost">Price:</label>
     <input type="text" id="cost" name="cost">
   </div>
 
-  <div class="form-group">
+  <div class="form-group mx-auto form-group w-50">
     <label for="item">Item Description:</label>
     <textarea id="description" name="description" rows="8" cols="40"></textarea>
   </div>
 
-  <button type="submit">Post an Item</button>
+  <button class="btn-secondary" type="submit">Post an Item</button>
 </form>
 
 <script type="text/javascript">

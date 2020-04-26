@@ -1,22 +1,24 @@
-<h1>Buy Fairly Used Shoes</h1>
+<h1 class="text-center display-5">Buy Fairly Used Shoes</h1>
 
-<p>Buy and Sell Items this app</p>
+
 
 <!-- Pass in data from server.js -->
-<ul>
+<div class="row">
   {{#each shoes}}
-  	<li>
+  	<div class="card col container text-white bg-success border-dark" style="width: 18rem;">
+  <div class="card-body">
   		<p><span class="label">Item for Sale:</span> {{this.Type}}</p>
       <p><span class="label">Brand:</span> {{this.Designer}}</p>
       <p><span class="label">Price($):</span> {{this.Cost}}</p>
       <p><span class="label">Description:</span> {{this.Description}}</p>
 
-      <button data-id="{{this.id}}" class="delItem">Sold</button>
+      <button class="btn-danger" data-id="{{this.id}}" class="delItem">Sold</button>
 
       <a href="/shoes/{{this.id}}">Update this Item</a>
-  	</li>
+   </div>
+  </div>
   {{/each}}
-</ul>
+</div>
 
 <h2>Post A Shoe to Sell</h2>
 

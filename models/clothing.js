@@ -8,7 +8,7 @@ var clothing = {
         });
     },
     viewOne: function(condition,cb) {
-        orm.viewAll("clothing", condition, function(res){
+        orm.viewOne("clothing", condition, function(res){
             cb(res);
         });
     },   
