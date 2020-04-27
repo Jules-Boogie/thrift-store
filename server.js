@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //we have some html in public folder that we want the app to utilize
-app.use(express.static("app/public"));
+app.use(express.static("./public"));
 
 //require our api route
 require("./router/storeController.js")(app);
