@@ -20,5 +20,33 @@
     <label for="item">Item Description:</label>
     <textarea class="form-control" rows="3" id="description" name="description" rows="8" cols="40">{{this.Description}}</textarea>
   </div>
-  <button class="btn-primary" type="submit">Update Post</button>
+  <button class="btn-primary" type="submit">Update Price</button>
 </form>
+
+<script>
+   $(".update-shoes").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+         
+        var updatedItem = {
+          Type: $("#item").val().trim(),
+          Designer: $("#brand").val().trim(),
+          Cost: $("#cost").val().trim(),
+          Description: $("#description").val().trim()
+        };
+
+        var id = $(this).data("id");
+
+        // Send the POST request.
+        $.ajax("/api/shoes/" + id, {
+          type: "PUT",
+          data: updatedItem
+        }).then(
+          function () {
+            console.log("updated shoe post");
+            // Reload the page to get the updated list
+            location.assign("/shoes");
+          }
+        );
+      });
+</script>

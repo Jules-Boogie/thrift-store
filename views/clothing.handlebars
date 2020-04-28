@@ -14,7 +14,7 @@
 
       <button data-id="{{this.id}}" class="delItem btn-danger">Sold</button>
 
-      <a class="btn btn-dark" href="/clothing/{{this.id}}">Update this Item</a>
+      <a class="btn btn-dark" href="/clothing/{{this.id}}">Update Price</a>
     </div>
   </div>
   {{/each}}
@@ -108,30 +108,6 @@
         );
       });
 
-      $(".update-clothing").on("submit", function (event) {
-        // Make sure to preventDefault on a submit event.
-        event.preventDefault();
-
-        var updatedItem = {
-          Type: $("#item").val().trim(),
-          Designer: $("#brand").val().trim(),
-          Cost: $("#cost").val().trim(),
-          Description: $("#description").val().trim()
-        };
-
-        var id = $(this).data("id");
-
-        // Send the POST request.
-        $.ajax("/api/clothing/" + id, {
-          type: "PUT",
-          data: updatedItem
-        }).then(
-          function () {
-            console.log("updated clothing item");
-            // Reload the page to get the updated list
-            location.assign("/clothing");
-          }
-        );
-      });
+      
 
     </script>

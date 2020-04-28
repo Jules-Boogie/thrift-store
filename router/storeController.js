@@ -49,13 +49,12 @@ module.exports = function (app) {
         var condition = "id = " + req.params.id;
         console.log("condition", condition);
         shoes.updateListing({
-            Type: req.body.Type,
-            Designer: req.body.Designer,
-            Cost: req.body.Cost,
-            Description: req.body.Description
+           
+            Cost: req.body.Cost
+           
         }, condition, function (result) {
             console.log("result", result);
-            if (result.changedRows == 0) {
+            if (result.changedRows === 0) {
                 return res.status(404).end();
             } else {
                 res.status(200).end();
@@ -70,7 +69,7 @@ module.exports = function (app) {
         var condition = "id = " + req.params.id;
         console.log("condition", condition);
         shoes.buyItem(condition, function (result) {
-            if (result.affectedRows == 0) {
+            if (result.affectedRows === 0) {
                 res.status(404).end();
             } else {
                 res.status(200).end();
@@ -112,7 +111,7 @@ module.exports = function (app) {
         clothing.updateListing({
             Cost: req.body.Cost
         }, condition, function (result) {
-            if (result.changedRows == 0) {
+            if (result.changedRows === 0) {
                 return res.status(404).end();
             } else {
                 res.status(200).end();
@@ -171,21 +170,22 @@ module.exports = function (app) {
         accessories.updateListing({
             Cost: req.body.Cost
         }, condition, function (result) {
-            if (result.changedRows == 0) {
+            if (result.changedRows === 0) {
                 return res.status(404).end();
             } else {
                 res.status(200).end();
             }
-        }
-
-
-        )
+        })
     })
 
+    // Type: req.body.Type,
+    // Designer: req.body.Designer,
+    // Cost: req.body.Cost,
+    // Description: req.body.Description
     app.delete("/api/accessories/:id", function (req, res) {
         var condition = "id = " + req.params.id;
         accessories.buyItem(condition, function (result) {
-            if (result.affectedRows == 0) {
+            if (result.affectedRows === 0) {
                 res.status(404).end();
             } else {
                 res.status(200).end();
