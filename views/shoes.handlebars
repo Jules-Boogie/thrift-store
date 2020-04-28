@@ -5,17 +5,17 @@
 <!-- Pass in data from server.js -->
 <div class="row">
   {{#each shoes}}
-  	<div class="card col container text-white bg-success border-light" style="width: 18rem;">
-  <div class="card-body">
-  		<p><span class="label">Item for Sale:</span> {{this.Type}}</p>
+  <div class="card col container text-white bg-success border-light" style="width: 18rem;">
+    <div class="card-body">
+      <p><span class="label">Item for Sale:</span> {{this.Type}}</p>
       <p><span class="label">Brand:</span> {{this.Designer}}</p>
       <p><span class="label">Price($):</span> {{this.Cost}}</p>
       <p><span class="label">Description:</span> {{this.Description}}</p>
 
-      <button class="btn-danger" data-id="{{this.id}}" class="delItem">Sold</button>
+      <button class="btn-danger delItem" data-id="{{this.id}}">Sold</button>
 
       <a class="btn btn-info" href="/shoes/{{this.id}}">Update this Item</a>
-   </div>
+    </div>
   </div>
   {{/each}}
 </div>
@@ -29,109 +29,109 @@
       </div>
     </div>
     <div class="col-md-9">
-      <form class="container  create-access">
+      <form class="container create-shoe">
 
-        <div class="form-group  form-group ">
+        <div class="form-group">
           <label class="control-label col" for="item">Item for Sale:</label>
           <div class="col-sm-10">
             <input class="form-control" type="text" id="item" name="item">
           </div>
         </div>
 
-        <div class="form-group  form-group">
+        <div class="form-group">
           <label class="control-label  col" for="brand">Brand Name:</label>
           <div class="col-sm-10">
             <input class="form-control" type="text" id="brand" name="brand">
           </div>
         </div>
 
-        <div class="form-group  form-group ">
+        <div class="form-group">
           <label class="control-label col" for="cost">Price:</label>
           <div class="col-sm-10">
             <input class="form-control" type="text" id="cost" name="cost">
           </div>
         </div>
 
-        <div class="form-group  form-group ">
+        <div class="form-group">
           <label class="control-label col-sm-2" for="item">Item Description:</label>
           <div class="col-sm-10">
             <textarea class="form-control" id="description" name="description" rows="8" cols="40"></textarea>
           </div>
         </div>
-       
-          <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-info" type="submit">Post an Item</button>
-          </div>
-        
+
+        <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-info" type="submit">Post an Item</button>
+        </div>
+
       </form>
     </div>
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
- $(".delItem").on("click", function(event) {
-      var id = $(this).data("id");
-  
-      // This is the client's way of sending the DELETE request to the server.
-      $.ajax("/api/shoes/" + id, {
-        type: "DELETE"
-      }).then(
-        function() {
-          console.log("deleted id ", id);
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
-  
-    $(".create-shoe").on("submit", function(event) {
-      // Make sure to preventDefault on a submit event.
-      event.preventDefault();
-  
-      var newShoe = {
-        Type: $("#item").val().trim(),
-        Designer: $("#brand").val().trim(),
-        Cost: $("#cost").val().trim(),
-        Description: $("#description").val().trim()
-      };
-  
-      // Send the POST request.
-      $.ajax("/api/shoes", {
-        type: "POST",
-        data: newShoe
-      }).then(
-        function() {
-          console.log("added new shoe");
-          // Reload the page to get the updated list
-          location.reload();
-        }
-      );
-    });
-  
-    $(".update-shoes").on("submit", function(event) {
-      // Make sure to preventDefault on a submit event.
-      event.preventDefault();
-  
-       var updatedItem = {
-        Type: $("#item").val().trim(),
-        Designer: $("#brand").val().trim(),
-        Cost: $("#cost").val().trim(),
-        Description: $("#description").val().trim()
-      };
-  
-      var id = $(this).data("id");
-  
-      // Send the POST request.
-      $.ajax("/api/shoes/" + id, {
-        type: "PUT",
-        data: updatedItem
-      }).then(
-        function() {
-          console.log("updated shoe post");
-          // Reload the page to get the updated list
-          location.assign("/shoes");
-        }
-      );
-    });
+      $(".delItem").on("click", function (event) {
+        var id = $(this).data("id");
 
-</script>
+        // This is the client's way of sending the DELETE request to the server.
+        $.ajax("/api/shoes/" + id, {
+          type: "DELETE"
+        }).then(
+          function () {
+            console.log("deleted id ", id);
+            // Reload the page to get the updated list
+            location.reload();
+          }
+        );
+      });
+
+      $(".create-shoe").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+
+        var newShoe = {
+          Type: $("#item").val().trim(),
+          Designer: $("#brand").val().trim(),
+          Cost: $("#cost").val().trim(),
+          Description: $("#description").val().trim()
+        };
+
+        // Send the POST request.
+        $.ajax("/api/shoes", {
+          type: "POST",
+          data: newShoe
+        }).then(
+          function () {
+            console.log("added new shoe");
+            // Reload the page to get the updated list
+            location.reload();
+          }
+        );
+      });
+
+      $(".update-shoes").on("submit", function (event) {
+        // Make sure to preventDefault on a submit event.
+        event.preventDefault();
+         
+        var updatedItem = {
+          Type: $("#item").val().trim(),
+          Designer: $("#brand").val().trim(),
+          Cost: $("#cost").val().trim(),
+          Description: $("#description").val().trim()
+        };
+
+        var id = $(this).data("id");
+
+        // Send the POST request.
+        $.ajax("/api/shoes/" + id, {
+          type: "PUT",
+          data: updatedItem
+        }).then(
+          function () {
+            console.log("updated shoe post");
+            // Reload the page to get the updated list
+            location.assign("/shoes");
+          }
+        );
+      });
+
+    </script>

@@ -36,28 +36,28 @@
     <div class="col-md-9">
       <form class="container  create-access">
 
-        <div class="form-group  form-group ">
+        <div class="form-group">
           <label class="control-label col" for="item">Item for Sale:</label>
           <div class="col-sm-10">
             <input class="form-control" type="text" id="item" name="item">
           </div>
         </div>
 
-        <div class="form-group  form-group">
+        <div class="form-group">
           <label class="control-label  col" for="brand">Brand Name:</label>
           <div class="col-sm-10">
             <input class="form-control" type="text" id="brand" name="brand">
           </div>
         </div>
 
-        <div class="form-group  form-group ">
+        <div class="form-group">
           <label class="control-label col" for="cost">Price:</label>
           <div class="col-sm-10">
             <input class="form-control" type="text" id="cost" name="cost">
           </div>
         </div>
 
-        <div class="form-group  form-group ">
+        <div class="form-group">
           <label class="control-label col-sm-2" for="item">Item Description:</label>
           <div class="col-sm-10">
             <textarea class="form-control" id="description" name="description" rows="8" cols="40"></textarea>
@@ -77,7 +77,7 @@
         var id = $(this).data("id");
 
         // Send the DELETE request.
-        $.ajax("/api/quotes/" + id, {
+        $.ajax("/api/accessories/" + id, {
           type: "DELETE"
         }).then(
           function () {
@@ -93,14 +93,14 @@
         event.preventDefault();
 
         var newAccess = {
-          Type: $("#utem").val().trim(),
+          Type: $("#item").val().trim(),
           Designer: $("#brand").val().trim(),
           Cost: $("#cost").val().trim(),
           Description: $("#description").val().trim()
         };
 
         // Send the POST request.
-        $.ajax("/api/quotes", {
+        $.ajax("/api/accessories", {
           type: "POST",
           data: newAccess
         }).then(

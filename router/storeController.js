@@ -49,7 +49,10 @@ module.exports = function (app) {
         var condition = "id = " + req.params.id;
         console.log("condition", condition);
         shoes.updateListing({
-            Cost: req.body.Cost
+            Type: req.body.Type,
+            Designer: req.body.Designer,
+            Cost: req.body.Cost,
+            Description: req.body.Description
         }, condition, function (result) {
             console.log("result", result);
             if (result.changedRows == 0) {
@@ -154,7 +157,7 @@ module.exports = function (app) {
 
 
     app.post("/api/accessories", function (req, res) {
-        accessories.create([
+        accessories.addListing([
             "Type", "Designer", "Cost", "Description"
 
         ],
