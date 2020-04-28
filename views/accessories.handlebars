@@ -63,80 +63,80 @@
             <textarea class="form-control" id="description" name="description" rows="8" cols="40"></textarea>
           </div>
         </div>
-       
-          <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-info" type="submit">Post an Item</button>
-          </div>
-        
+
+        <div class="col-sm-offset-2 col-sm-10">
+          <button class="btn btn-info" type="submit">Post an Item</button>
+        </div>
+
       </form>
     </div>
 
     <script type="text/javascript">
-$( document ).ready(function() {
-      $(".delItem").on("click", function (event) {
-        var id = $(this).data("id");
+      
+        $(".delItem").on("click", function (event) {
+          var id = $(this).data("id");
 
-        // Send the DELETE request.
-        $.ajax("/api/accessories/" + id, {
-          type: "DELETE"
-        }).then(
-          function () {
-            console.log("deleted id ", id);
-            // Reload the page to get the updated list
-            location.reload();
-          }
-        );
-      });
+          // Send the DELETE request.
+          $.ajax("/api/accessories/" + id, {
+            type: "DELETE"
+          }).then(
+            function () {
+              console.log("deleted id ", id);
+              // Reload the page to get the updated list
+              location.reload();
+            }
+          );
+        });
 
-      $(".create-access").on("submit", function (event) {
-        //Make sure to preventDefault on a submit event.
-        event.preventDefault();
+        $(".create-access").on("submit", function (event) {
+          //Make sure to preventDefault on a submit event.
+          event.preventDefault();
 
-        var newAccess = {
-          Type: $("#item").val().trim(),
-          Designer: $("#brand").val().trim(),
-          Cost: $("#cost").val().trim(),
-          Description: $("#description").val().trim()
-        };
+          var newAccess = {
+            Type: $("#item").val().trim(),
+            Designer: $("#brand").val().trim(),
+            Cost: $("#cost").val().trim(),
+            Description: $("#description").val().trim()
+          };
 
-        //Send the POST request.
-        $.ajax("/api/accessories", {
-          type: "POST",
-          data: newAccess
-        }).then(
-          function () {
-            console.log("added new accessory");
-            //Reload the page to get the updated list
-            location.reload();
-          }
-        );
-      });
-/*
-       $(".update-access").on("submit", function (event) {
-        //Make sure to preventDefault on a submit event.
-        event.preventDefault();
-
-        var updatedItem = {
-          Type: $("#item").val().trim(),
-          Designer: $("#brand").val().trim(),
-          Cost: $("#cost").val().trim(),
-          Description: $("#description").val().trim()
-        };
-
-        var id = $(this).data("id");
-
-        //Send the POST request.
-        $.ajax("/api/accessories/" + id, {
-          type: "PUT",
-          data: updatedItem
-        }).then(
-          function() {
-            console.log("updated accessory post");
-            //Reload the page to get the updated list
-            location.assign("/accessories");
-          }
-        );
-      });
-      */
-});
+          //Send the POST request.
+          $.ajax("/api/accessories", {
+            type: "POST",
+            data: newAccess
+          }).then(
+            function () {
+              console.log("added new accessory");
+              //Reload the page to get the updated list
+              location.reload();
+            }
+          );
+        });
+        /*
+               $(".update-access").on("submit", function (event) {
+                //Make sure to preventDefault on a submit event.
+                event.preventDefault();
+        
+                var updatedItem = {
+                  Type: $("#item").val().trim(),
+                  Designer: $("#brand").val().trim(),
+                  Cost: $("#cost").val().trim(),
+                  Description: $("#description").val().trim()
+                };
+        
+                var id = $(this).data("id");
+        
+                //Send the POST request.
+                $.ajax("/api/accessories/" + id, {
+                  type: "PUT",
+                  data: updatedItem
+                }).then(
+                  function() {
+                    console.log("updated accessory post");
+                    //Reload the page to get the updated list
+                    location.assign("/accessories");
+                  }
+                );
+              });
+              */
+      
     </script>

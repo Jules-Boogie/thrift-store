@@ -160,7 +160,7 @@ module.exports = function (app) {
             "Type", "Designer", "Cost", "Description"
 
         ],
-            [req.body.Type, req.body.Designer, req.body.Cost, req.body.Description], function (result) {
+        [req.body.Type, req.body.Designer, req.body.Cost, req.body.Description], function (result) {
                 res.json({ id: result.insertID })
             })
     })
